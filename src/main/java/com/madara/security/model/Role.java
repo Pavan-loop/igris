@@ -1,4 +1,4 @@
-package com.madara.security.user;
+package com.madara.security.model;
 
 public enum Role {
     USER,

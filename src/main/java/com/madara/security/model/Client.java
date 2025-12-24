@@ -1,6 +1,5 @@
-package com.madara.security.payments;
+package com.madara.security.model;
 
-import com.madara.security.invoice.Invoice;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,28 +10,32 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "payments")
+@Table(name = "client")
 @EntityListeners(AuditingEntityListener.class)
-public class Payments {
+public class Client {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    @Column(name = "amount_paid")
-    private Long amountPaid;
-    @Column(name = "payment_method")
-    private String paymentMethod;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column(name = "address")
+    private String address;
 
-    @OneToOne
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Invoice> invoices;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

@@ -1,4 +1,4 @@
-package com.madara.security.project.status;
+package com.madara.security.model.project;
 
 public enum Status {
     TAKEN,

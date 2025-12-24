@@ -1,8 +1,6 @@
-package com.madara.security.project;
+package com.madara.security.model;
 
-import com.madara.security.client.Client;
-import com.madara.security.project.status.Status;
-import com.madara.security.user.User;
+import com.madara.security.model.project.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter

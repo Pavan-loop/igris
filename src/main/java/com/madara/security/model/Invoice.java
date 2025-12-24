@@ -1,8 +1,6 @@
-package com.madara.security.invoice;
+package com.madara.security.model;
 
-import com.madara.security.client.Client;
-import com.madara.security.invoice.status.Status;
-import com.madara.security.project.Project;
+import com.madara.security.model.invoice.Status;
 import com.madara.security.utility.InvoiceSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

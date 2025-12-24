@@ -27,14 +27,12 @@ public class AuthenticationService {
     public void registerUser(RegistrationRequest request, Role role) {
 
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
+                .name(request.getName())
+                .username(request.getUsername())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .isAccountEnabled(true)
-                .isAccountNonLocked(true)
-                .roles(Collections.singleton(role))
-                .build();
+                .password(request.getPassword())
+                .phoneNumber(request.getPhoneNumber())
+                        .build();
 
         userRepository.save(user);
     }

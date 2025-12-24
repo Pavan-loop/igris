@@ -13,12 +13,12 @@ import lombok.Setter;
 @Builder
 public class RegistrationRequest {
 
-    @NotEmpty(message = "Firstname should not be empty")
-    @NotBlank(message = "Firstname should not be empty")
-    private String firstname;
-    @NotEmpty(message = "Lastname should not be empty")
-    @NotBlank(message = "Lastname should not be empty")
-    private String lastname;
+    @NotEmpty(message = "Name should not be empty")
+    @NotBlank(message = "Name should not be empty")
+    private String name;
+    @NotEmpty(message = "Username should not be empty")
+    @NotBlank(message = "Username should not be empty")
+    private String username;
     @NotEmpty(message = "Email should not be empty")
     @NotBlank(message = "Email should not be empty")
     @Email(message = "Email should be valid")
@@ -27,4 +27,8 @@ public class RegistrationRequest {
     @NotBlank(message = "Password should not be empty")
     @Size(min = 8, message = "Password size should be more than 8")
     private String password;
+    @NotEmpty(message = "Phone number should not be empty")
+    @NotBlank(message = "Phone number should not be empty")
+    @Size(min = 10, max = 10, message = "Phone number should be 10 numbers")
+    private Long phoneNumber;
 }

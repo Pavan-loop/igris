@@ -1,7 +1,6 @@
-package com.madara.security.project;
+package com.madara.security.projectStaff;
 
-import com.madara.security.client.Client;
-import com.madara.security.project.status.Status;
+import com.madara.security.project.Project;
 import com.madara.security.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,47 +13,33 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "project")
+@Table(name = "project_staff")
 @EntityListeners(AuditingEntityListener.class)
-public class Project {
+public class ProjectStaff {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    @Column(name = "project_name")
-    private String projectName;
-    @Column(name = "site_location")
-    private String siteLocation;
-    @Column(name = "start_date")
-    private LocalDate startDate;
-    @Column(name = "due_date")
-    private LocalDate dueDate;
-    @Column(name = "material")
-    private String material;
-    @Column(name = "estimated_cost")
-    private Long estimatedCost;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private Status status;
+    @Column(name = "assigned_role")
+    private String assignedRole;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "staff_id")
+    private User staff;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id")
-    private User manager;
+    @JoinColumn(name = "project_id")
+    private Project project;
 
+    @Column(name = "joined_date")
+    private LocalDate joinedDate;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

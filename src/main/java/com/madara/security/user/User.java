@@ -27,11 +27,18 @@ public class User implements UserDetails, Principal {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
-    private String firstname;
-    private String lastname;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "phone_number")
+    private Long phoneNumber;
 
     private boolean isAccountEnabled;
     private boolean isAccountNonLocked;

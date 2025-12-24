@@ -8,10 +8,10 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.madara</groupId>
-	<artifactId>security</artifactId>
+	<groupId>com.smew</groupId>
+	<artifactId>igiris</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>security</name>
+	<name>igiris</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

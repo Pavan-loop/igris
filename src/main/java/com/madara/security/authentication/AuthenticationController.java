@@ -1,6 +1,6 @@
 package com.madara.security.authentication;
 
-import com.madara.security.user.Role;
+import com.madara.security.model.Role;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

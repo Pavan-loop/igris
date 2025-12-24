@@ -1,4 +1,4 @@
-package com.madara.security.user;
+package com.madara.security.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Principal;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

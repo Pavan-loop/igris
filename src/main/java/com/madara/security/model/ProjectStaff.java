@@ -1,6 +1,5 @@
-package com.madara.security.invoiceItems;
+package com.madara.security.model;
 
-import com.madara.security.invoice.Invoice;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,32 +10,34 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "invoice_items")
+@Table(name = "project_staff")
 @EntityListeners(AuditingEntityListener.class)
-public class InvoiceItems {
+public class ProjectStaff {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    @Column(name = "item_name")
-    private String itemName;
-    @Column(name = "quantity")
-    private Integer quantity;
-    @Column(name = "rate")
-    private Long rate;
-    @Column(name = "total_price")
-    private Long totalPrice;
+    @Column(name = "assigned_role")
+    private String assignedRole;
 
-    @OneToOne
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "staff_id")
+    private User staff;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @Column(name = "joined_date")
+    private LocalDate joinedDate;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -45,5 +46,4 @@ public class InvoiceItems {
     @LastModifiedDate
     @Column(insertable = false)
     private Instant modifiedAt;
-
 }

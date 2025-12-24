@@ -1,5 +1,6 @@
-package com.madara.security.user;
+package com.madara.security.repository;
 
+import com.madara.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

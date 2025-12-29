@@ -27,8 +27,5 @@ public class RegistrationRequest {
     @NotBlank(message = "Password should not be empty")
     @Size(min = 8, message = "Password size should be more than 8")
     private String password;
-    @NotEmpty(message = "Phone number should not be empty")
-    @NotBlank(message = "Phone number should not be empty")
-    @Size(min = 10, max = 10, message = "Phone number should be 10 numbers")
     private Long phoneNumber;
 }

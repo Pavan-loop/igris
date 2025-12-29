@@ -1,6 +1,6 @@
 package com.madara.security.security.config;
 
-import com.madara.security.Exception.UserNotFoundException;
+import com.madara.security.Exception.type.UserNotFoundException;
 import com.madara.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

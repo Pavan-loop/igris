@@ -1,6 +1,8 @@
 package com.madara.security.authentication;
 
 import com.madara.security.model.Role;
+import com.madara.security.response.DTO.ApiResponse;
+import com.madara.security.response.type.LoginResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,11 +32,17 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<String> loginUser(
+    public ResponseEntity<ApiResponse<LoginResponse>> loginUser(
             @RequestBody
             LoginRequest request
     ) {
         String token = authenticationService.loginAndGenerateJwtToken(request);
-        return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
+        ApiResponse<LoginResponse> response = ApiResponse.<LoginResponse>builder()
+                .success(true)
+                .status(HttpStatus.ACCEPTED)
+                .message("Login successful")
+                .data(new LoginResponse(token))
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 }

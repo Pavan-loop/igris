@@ -1,6 +1,7 @@
 package com.madara.security.authentication;
 
 import com.madara.security.Exception.type.UnauthorizedException;
+import com.madara.security.Exception.type.UserAlreadyExistException;
 import com.madara.security.security.jwt.JwtService;
 import com.madara.security.model.Role;
 import com.madara.security.model.User;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +32,10 @@ public class AuthenticationService {
 
     public void registerUser(RegistrationRequest request, Role role) {
 
+        Optional<User> existing = userRepository.findByEmail(request.getEmail());
+        if (existing.isPresent()) {
+            throw new UserAlreadyExistException("This Management user is already existing");
+        }
         var user = User.builder()
                 .name(request.getName())
                 .username(request.getUsername())

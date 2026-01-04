@@ -17,21 +17,24 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<?> registerUser(
+    public ResponseEntity<ApiResponse<Void>> registerUser(
             @RequestBody
             @Valid
             RegistrationRequest request,
             @RequestParam("role") String role
     ) {
-        System.out.println("hello");
         Role upperRole = Role.valueOf(role.toUpperCase());
         authenticationService.registerUser(request, upperRole);
-        return ResponseEntity.accepted().build();
+        ApiResponse<Void> response = ApiResponse.<Void>builder()
+                .success(true)
+                .status(HttpStatus.CREATED)
+                .message("User Created")
+                .data(null)
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ApiResponse<LoginResponse>> loginUser(
             @RequestBody
             LoginRequest request
@@ -45,4 +48,6 @@ public class AuthenticationController {
                 .build();
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
+
+
 }

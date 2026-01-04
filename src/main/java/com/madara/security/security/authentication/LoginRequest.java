@@ -1,4 +1,4 @@
-package com.madara.security.authentication;
+package com.madara.security.security.authentication;
 
 import lombok.Data;
 

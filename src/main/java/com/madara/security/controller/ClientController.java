@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/client")
+// TODO: Restructure this ApiResponse<> add custom contracture to reuse of the code
 public class ClientController {
 
     private final ClientService clientService;
@@ -24,12 +25,8 @@ public class ClientController {
             @Valid @RequestBody ClientDTO clientDTO
             ) {
         Client client = clientService.create(clientDTO);
-        ApiResponse<Client> response = ApiResponse.<Client>builder()
-                .success(true)
-                .status(HttpStatus.CREATED)
-                .message("User Created")
-                .data(client)
-                .build();
+        ApiResponse<Client> response =
+                ApiResponse.success(client, "User Created", HttpStatus.CREATED);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -39,12 +36,8 @@ public class ClientController {
             @RequestParam Long id
     ) {
         Client client = clientService.update(clientDTO, id);
-        ApiResponse<Client> response = ApiResponse.<Client>builder()
-                .success(true)
-                .status(HttpStatus.ACCEPTED)
-                .message("User Updated Successfully")
-                .data(client)
-                .build();
+        ApiResponse<Client> response =
+                ApiResponse.success(client, "User Updated Successfully", HttpStatus.ACCEPTED);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
@@ -53,12 +46,8 @@ public class ClientController {
             @PathVariable Long id
     ) {
         Client client = clientService.selectClient(id);
-        ApiResponse<Client> response = ApiResponse.<Client>builder()
-                .success(true)
-                .status(HttpStatus.FOUND)
-                .message("Client Found")
-                .data(client)
-                .build();
+        ApiResponse<Client> response =
+                ApiResponse.success(client, "Client Found", HttpStatus.FOUND);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
 
@@ -67,25 +56,16 @@ public class ClientController {
             @PathVariable Long id
     ) {
         clientService.delete(id);
-        ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Client deleted")
-                .data(null)
-                .build();
+        ApiResponse<Void> response =
+                ApiResponse.success(null, "Client deleted", HttpStatus.OK);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<Client>>> getAllClients() {
         List<Client> clients = clientService.getAllClient();
-        ApiResponse<List<Client>> response = ApiResponse.<List<Client>>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("List of Clients")
-                .data(clients)
-                .build();
-
+        ApiResponse<List<Client>> response =
+                ApiResponse.success(clients, "List of Clients", HttpStatus.OK);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

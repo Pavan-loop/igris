@@ -18,34 +18,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<ApiResponse<Void>> handleUnauthorizedException(UnauthorizedException e) {
-        ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .success(false)
-                .status(HttpStatus.UNAUTHORIZED)
-                .message(e.getMessage())
-                .data(null)
-                .build();
+        ApiResponse<Void> response =
+                ApiResponse.error(e.getMessage(), HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(UserAlreadyExistException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserAlreadyExistException(UserAlreadyExistException e) {
-        ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .success(false)
-                .status(HttpStatus.CONFLICT)
-                .message(e.getMessage())
-                .data(null)
-                .build();
+        ApiResponse<Void> response =
+                ApiResponse.error(e.getMessage(), HttpStatus.CONFLICT);
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserNotFoundException(UserNotFoundException e) {
-        ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .success(false)
-                .status(HttpStatus.NOT_FOUND)
-                .message(e.getMessage())
-                .data(null)
-                .build();
+        ApiResponse<Void> response =
+                ApiResponse.error(e.getMessage(), HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -59,13 +47,7 @@ public class GlobalExceptionHandler {
         );
 
         ApiResponse<Map<String, String>> response =
-                ApiResponse.<Map<String, String>>builder()
-                        .success(false)
-                        .status(HttpStatus.BAD_REQUEST)
-                        .message("Validation failed")
-                        .data(errors)
-                        .build();
-
+                ApiResponse.error("Validation failed", HttpStatus.BAD_REQUEST, errors);
         return ResponseEntity.badRequest().body(response);
     }
 }

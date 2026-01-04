@@ -25,10 +25,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> {})
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(
                         request -> request.requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user").hasRole("USER")
                                 .anyRequest().authenticated()
                 )

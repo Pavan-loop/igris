@@ -1,10 +1,7 @@
 package com.madara.security.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "client")
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Client {
 
     @Id
@@ -27,9 +25,9 @@ public class Client {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
     @Column(name = "address")
     private String address;

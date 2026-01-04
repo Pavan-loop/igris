@@ -1,4 +1,4 @@
-package com.madara.security.authentication;
+package com.madara.security.security.authentication;
 
 import com.madara.security.Exception.type.UnauthorizedException;
 import com.madara.security.Exception.type.UserAlreadyExistException;

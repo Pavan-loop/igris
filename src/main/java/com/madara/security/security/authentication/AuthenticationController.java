@@ -1,4 +1,4 @@
-package com.madara.security.authentication;
+package com.madara.security.security.authentication;
 
 import com.madara.security.model.Role;
 import com.madara.security.response.DTO.ApiResponse;

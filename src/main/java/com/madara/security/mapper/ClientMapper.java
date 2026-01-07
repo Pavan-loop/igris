@@ -16,13 +16,13 @@ public class ClientMapper {
         return client;
     }
 
-    public Client toClientDTO(Client client) {
+    public ClientDTO toClientDTO(Client client) {
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setName(client.getName());
         clientDTO.setEmail(client.getEmail());
         clientDTO.setPhoneNumber(client.getPhoneNumber());
         clientDTO.setAddress(client.getAddress());
-        return client;
+        return clientDTO;
     }
 
     public void updateMapper(Client entity, ClientDTO dto) {

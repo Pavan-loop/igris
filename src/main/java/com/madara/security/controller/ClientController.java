@@ -42,11 +42,11 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<Client>> getClientById(
+    public ResponseEntity<ApiResponse<ClientDTO>> getClientById(
             @PathVariable Long id
     ) {
-        Client client = clientService.selectClient(id);
-        ApiResponse<Client> response =
+        ClientDTO client = clientService.selectClient(id);
+        ApiResponse<ClientDTO> response =
                 ApiResponse.success(client, "Client Found", HttpStatus.FOUND);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
@@ -62,9 +62,9 @@ public class ClientController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<ApiResponse<List<Client>>> getAllClients() {
-        List<Client> clients = clientService.getAllClient();
-        ApiResponse<List<Client>> response =
+    public ResponseEntity<ApiResponse<List<ClientDTO>>> getAllClients() {
+        List<ClientDTO> clients = clientService.getAllClient();
+        ApiResponse<List<ClientDTO>> response =
                 ApiResponse.success(clients, "List of Clients", HttpStatus.OK);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

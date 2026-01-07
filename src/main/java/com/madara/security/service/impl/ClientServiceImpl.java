@@ -58,18 +58,22 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Client selectClient(Long id) {
-        return clientRepository.findById(id)
+    public ClientDTO selectClient(Long id) {
+        Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User Not Found"));
+        return clientMapper.toClientDTO(client);
     }
 
     @Override
-    public List<Client> getAllClient() {
+    public List<ClientDTO> getAllClient() {
         List<Client> clients = clientRepository.findAll();
+        List<ClientDTO> mapper = clients.stream().map(
+                clientMapper::toClientDTO
+        ).toList();
         if (clients.isEmpty()) {
             throw new UserNotFoundException("You don't Have any clients");
         }
-        return clients;
+        return mapper;
     }
 
 

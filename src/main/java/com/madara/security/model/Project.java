@@ -30,6 +30,8 @@ public class Project {
     private String projectName;
     @Column(name = "site_location")
     private String siteLocation;
+    @Column(name = "project_type")
+    private String projectType;
     @Column(name = "start_date")
     private LocalDate startDate;
     @Column(name = "due_date")

@@ -11,6 +11,6 @@ public interface ClientService {
     Client create(ClientDTO client);
     Client update(ClientDTO client, Long id);
     void delete(Long id);
-    Client selectClient(Long id);
-    List<Client> getAllClient();
+    ClientDTO selectClient(Long id);
+    List<ClientDTO> getAllClient();
 }
